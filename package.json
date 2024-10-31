@@ -1,6 +1,6 @@
 {
     "name": "@schoolgram-by-arbisoft/mod-boilerplate",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A CLI tool to generate boilerplate folder structure for sg mod plugin in moodle",
     "main": "index.js",
     "bin": {
@@ -13,7 +13,9 @@
         "schoolgram",
         "sg",
         "moodle",
-        "arbisoft"
+        "arbisoft",
+        "mod-boilerplate",
+        "activity"
     ],
     "author": "Muhammad Omer Nawaz",
     "license": "MIT",
