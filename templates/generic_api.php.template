@@ -1,0 +1,30 @@
+<?php
+
+namespace mod_#MODNAME#;
+
+use stdClass;
+use theme_space\api\generic_api;
+
+class #MODNAME#_api extends generic_api
+{
+    public function fetch_activity_data($cmid)
+    {
+        global $DB;
+
+        list($course, $cm) = get_course_and_cm_from_cmid($cmid, '#MODNAME#');
+        $moduleinstance = $DB->get_record('#MODNAME#', array('id' => $cm->instance), '*', MUST_EXIST);
+
+        if (($moduleinstance)) {
+            $status = 200;
+            $response = [];
+        } else {
+            $status = 404;
+            $response = [
+                'status' => 'error',
+                'message' => 'Data not found.'
+            ];
+        }
+
+        $this->send_response($response, $status);
+    }
+}

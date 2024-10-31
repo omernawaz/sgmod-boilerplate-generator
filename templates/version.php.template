@@ -1,0 +1,8 @@
+<?php
+defined('MOODLE_INTERNAL') || die();
+
+$plugin->component = 'mod_#MODNAME#'; // Full name of the plugin (used for diagnostics).
+$plugin->version   = #VERSION#;       // The current module version (Date: YYYYMMDDXX)
+$plugin->requires  = 2020060900;    // Requires this Moodle version
+$plugin->maturity = MATURITY_STABLE; // This is an alpha version.
+$plugin->release = 'v1.0'; // This is our first version.

@@ -1,0 +1,11 @@
+{{!
+    @template #MODNAME#/form
+}}
+{{> theme_space/mod_common/activity-details }}
+{{> theme_space/mod_common/hints }}
+<form method="POST" class="#MODNAME#-form">
+    <div id="root"></div>
+</form>
+{{> theme_space/mod_common/submit_data }}
+
+<script type="module" src="{{indexPath}}"></script>

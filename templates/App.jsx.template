@@ -1,0 +1,9 @@
+import { useState } from "../../../../../theme/space/js/utils.js";
+
+
+const App = () => {
+    const [sampleState, setSampleState] = useState();
+    return <div>Application #MODNAME#</div>
+}
+
+export default App;

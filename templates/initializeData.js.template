@@ -1,0 +1,10 @@
+const urlParams = new URLSearchParams(window.location.search);
+const cmId = urlParams.get('id');
+const response = await axios.get(`${baseUrl}mod/#MODNAME#/classes/api.php`, {
+    params: {
+        action: "fetch_activity_data",
+        cmid: cmId,
+    },
+});
+
+const data = response.data;

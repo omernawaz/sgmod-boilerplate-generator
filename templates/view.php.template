@@ -1,0 +1,51 @@
+<?php
+require('../../config.php');
+require_once('lib.php');
+
+$autocomplete = $jquery_utils = $node_packages_js = $submit_handler_react = true;
+require_once($CFG->dirroot . '/theme/space/required_files.php');
+
+use mod_#MODNAME#\render\renderer;
+use theme_space\util\utility;
+
+global $CFG;
+
+$id = required_param('id', PARAM_INT);
+list($course, $cm) = get_course_and_cm_from_cmid($id, '#MODNAME#');
+require_course_login($course, true, $cm);
+$context = context_module::instance($id);
+
+utility::save_score_item($id, $course);
+
+$#MODNAME# = $DB->get_record('#MODNAME#', array('id' => $cm->instance), '*', MUST_EXIST);
+
+utility::save_view_info($#MODNAME#, '#MODNAME#', $course, $cm, $context);
+
+$name = $#MODNAME#->name;
+
+if ($name == null or $name == '') {
+    $PAGE->set_title(get_string('title_default', '#MODNAME#'));
+    $PAGE->set_heading(get_string('title_default', '#MODNAME#'));
+} else {
+    $PAGE->set_title($name);
+    $PAGE->set_heading($name);
+}
+
+$instructions = [
+    'show_instructions' => $#MODNAME#->instructions ? true : false,
+    'grading_criteria' => $#MODNAME#->grading_criteria ? $#MODNAME#->grading_criteria : false,
+    'instructions' => format_text($#MODNAME#->instructions)
+];
+
+$intro = format_module_intro($cm->modname, $#MODNAME#, $cm->id);
+
+echo $OUTPUT->header();
+renderer::render(
+    $intro,
+    $instructions,
+    $#MODNAME#->id,
+    $id,
+    $name
+);
+
+echo $OUTPUT->footer();

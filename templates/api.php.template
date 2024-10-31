@@ -1,0 +1,7 @@
+<?php
+require_once(__DIR__ . '../../../../config.php');
+
+use mod_#MODNAME#\#MODNAME#_api;
+
+$api = new #MODNAME#_api();
+$api->handle_request();

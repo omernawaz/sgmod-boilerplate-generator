@@ -1,0 +1,58 @@
+<?php
+
+use local_analytics\analytics;
+
+function #MODNAME#_supports($feature)
+{
+    switch ($feature) {
+        case FEATURE_BACKUP_MOODLE2:
+            return true;
+        default:
+            return null;
+    }
+}
+
+function #MODNAME#_add_instance($data)
+{
+    global $DB;
+    $data->timecreated = time();
+
+    if ($data->name == null)
+        $data->name = '#READABLEMODNAME# Activity';
+        
+    $data->instructions = $data->instructions['text'];
+    $data->grading_criteria = $data->grading_criteria['text'];
+    $data->time = (int)$data->time;
+
+    $id = $DB->insert_record('#MODNAME#', $data);
+
+    $analytics = new analytics();
+    $analytics->addScoreItem($data);
+
+    return $id;
+}
+function #MODNAME#_update_instance($data)
+{
+    global $DB;
+    $data->id = $data->instance;
+    $data->timecreated = time();
+    $data->time = (int)$data->time;
+    $data->instructions = $data->instructions['text'];
+    $data->grading_criteria = $data->grading_criteria['text'];
+
+    if ($data->name == null)
+        $data->name = '#READABLEMODNAME# Activity';
+    $DB->update_record('#MODNAME#', $data);
+
+    return true;
+}
+function #MODNAME#_delete_instance($id)
+{
+    global $DB;
+    if (!$#MODNAME# = $DB->get_record('#MODNAME#', array('id' => $id))) {
+        return false;
+    }
+    $DB->delete_records('#MODNAME#', array('id' => $#MODNAME#->id));
+
+    return true;
+}

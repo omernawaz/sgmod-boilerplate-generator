@@ -1,0 +1,91 @@
+<?php
+
+if (!defined('MOODLE_INTERNAL')) {
+    die('Direct access to this script is forbidden.');    ///  It must be included from a Moodle page
+}
+
+require_once($CFG->dirroot . '/course/moodleform_mod.php');
+require_once($CFG->dirroot . '/mod/#MODNAME#/lib.php');
+
+use theme_space\util\utility;
+
+class mod_#MODNAME#_mod_form extends moodleform_mod
+{
+    function definition()
+    {
+        $mform = &$this->_form;
+
+        $mform->addElement('hidden', 'name');
+
+        $mform->addElement('text', 'title', get_string('title', '#MODNAME#'), array('size' => '94'));
+        $mform->setDefault('title', get_string('title_default', '#MODNAME#'));
+        $mform->addRule('title', null, 'required');
+
+        $this->standard_intro_elements('Description');
+
+        $mform->addElement('editor', 'instructions', get_string('instructions', '#MODNAME#'), array('size' => '94'));
+        $mform->addElement('editor', 'grading_criteria', get_string('grading_criteria', 'theme_space'), array('size' => '225'));
+
+
+        $this->standard_coursemodule_elements();
+
+        $this->add_action_buttons();
+    }
+
+    function data_preprocessing(&$data)
+    {
+        if ($data['name'] != '') {
+            $data['title'] = $data['name'];
+        }
+
+        $instructions = array();
+
+        $instructions['text'] = $data['instructions'];
+        $instructions['format'] = 1;
+        $data['instructions'] = $instructions;
+
+        // Add grading_criteria processing
+        $grading_criteria = [
+            'text' => isset($data['grading_criteria']) ? $data['grading_criteria'] : '',
+            'format' => 1
+        ];
+
+        $data['grading_criteria'] = $grading_criteria;
+
+    }
+
+    function data_postprocessing($data)
+    {
+        if ($data->title != '')
+            $data->name = $data->title;
+
+    }
+
+    function definition_after_data()
+    {
+        $mform = &$this->_form;
+
+        $introtext = $mform->getElementValue('introeditor');
+        if ($introtext['text'] == '') {
+            $introtext['text'] = get_string('title_default', '#MODNAME#');
+            $mform->getElement('introeditor')->setValue($introtext);
+        }
+
+        $instructions = $mform->getElementValue('instructions');
+        if ($instructions['text'] == '') {
+            $instructions['text'] = get_string('instructions_text', '#MODNAME#');
+            $mform->getElement('instructions')->setValue($instructions);
+        }
+
+        if ($mform->getElementValue('name') == '') {
+            $mform->getElement('name')->setValue(get_string('modulename', '#MODNAME#'));
+        }
+    }
+
+    public function validation($data, $files)
+    {
+        $errors = array();
+
+        return $errors;
+    }
+}

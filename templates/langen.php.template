@@ -1,0 +1,21 @@
+<?php
+
+$string['modulename'] = '#READABLEMODNAME# Activity';
+$string['title'] = 'Title';
+$string['title_default'] = '#READABLEMODNAME#';
+$string['retries'] = 'Max Retries';
+$string['modulenameplural'] = '#READABLEMODNAME# Activities';
+$string['pluginname'] = '#READABLEMODNAME# Activity';
+$string['instructions'] = "Instructions";
+$string['instructions_text'] = '{mlang en}
+                            Please read the following:
+                            <ul>
+                                <li></li>
+                            </ul>
+                            {mlang}
+                            {mlang ur}
+                            براہ کرم مندرجہ ذیل کریں:
+                            <ul>
+                                <li></li>
+                            </ul>
+                            {mlang}';

@@ -1,0 +1,1 @@
+This is a node package for the boilerplate generation for schoolgram mod plugins in moodle.
