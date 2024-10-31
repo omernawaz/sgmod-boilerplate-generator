@@ -16,5 +16,9 @@
         "arbisoft"
     ],
     "author": "Muhammad Omer Nawaz",
-    "license": "MIT"
+    "license": "MIT",
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/omernawaz/sgmod-boilerplate-generator.git"
+  }
 }
