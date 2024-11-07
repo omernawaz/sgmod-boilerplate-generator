@@ -12,7 +12,6 @@ class renderer
         $instructions,
         $activity_id,
         $course_module_id,
-        $name
     ) {
         global $OUTPUT;
         global $CFG;
@@ -20,7 +19,6 @@ class renderer
         $data = [
             'intro' => $intro,
             'activity_id' => $activity_id,
-            'name' => $name,
             'indexPath' => $CFG->wwwroot . "/mod/#MODNAME#/library/js/index.js",
         ];
 

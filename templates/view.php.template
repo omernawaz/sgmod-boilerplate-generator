@@ -1,6 +1,5 @@
 <?php
 require('../../config.php');
-require_once('lib.php');
 
 $autocomplete = $jquery_utils = $node_packages_js = $submit_handler_react = true;
 require_once($CFG->dirroot . '/theme/space/required_files.php');
@@ -45,7 +44,6 @@ renderer::render(
     $instructions,
     $#MODNAME#->id,
     $id,
-    $name
 );
 
 echo $OUTPUT->footer();
