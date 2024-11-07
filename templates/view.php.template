@@ -30,11 +30,7 @@ if ($name == null or $name == '') {
     $PAGE->set_heading($name);
 }
 
-$instructions = [
-    'show_instructions' => $#MODNAME#->instructions ? true : false,
-    'grading_criteria' => $#MODNAME#->grading_criteria ? $#MODNAME#->grading_criteria : false,
-    'instructions' => format_text($#MODNAME#->instructions)
-];
+$instructions = utility::get_instructions($sgspellingbee, $cm, $context->id);
 
 $intro = format_module_intro($cm->modname, $#MODNAME#, $cm->id);
 
